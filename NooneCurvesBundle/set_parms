@@ -1,0 +1,7 @@
+
+# An example of a parameter setting file.
+# Usage: NooneCurves.py set_parms
+plot_file = "silly_test.pdf"
+del0 = -360.0
+tsrc = 305.0
+

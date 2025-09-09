@@ -1,0 +1,99 @@
+
+### CCD:: Some random notes on issues that arose ...
+
+In noone_curves, there are some variables that are used that have no
+definition:
+
+    i80 and ifrz
+
+They simply appear and have no prior definition in file of the original
+IDL code that I can seen.
+
+Also the two functions alp18o_liq and alp18o_ice are in the isoraysat
+module, but never defined.
+
+The only saving grace is that since ispec = 0 and is never set to 1,
+these two functions never actually get called.
+
+#------------------------------------------------------------------
+
+In isoraysat, I am not clear on the actual definition of rh2o and this
+worries me because we can get a divide by zero near the end of isoraysat.
+
+#------------------------------------------------------------------
+
+Note that I defined a new flag/keyword vh2ovhdo to replace the pair of
+vh2o and vhdo since there was a name clash that did not bother IDL but
+did bother Python. This is only used in isoraysat.py
+
+#------------------------------------------------------------------
+
+In noone_curves.pro there seems to be an error in the initial value
+assignment to pcld  (roughly line 63):
+
+	;***** CCD I think this is an error:
+	; if (n_elements(pcld) eq 0) then delp = 85000.
+	; It should assign value to pcld, not delp, as in:
+	  if (n_elements(pcld) eq 0) then pcld = 85000.
+
+Not only does this not provide an initial value for pcld, but it
+incorrectly resets delp from 0 in the previous statement to 85000.
+
+#------------------------------------------------------------------
+
+NB: Python functions cannot have arguments that get modified and go back
+to caller modified. For example empty array names that one passes in by
+reference in C or Fortran or IDL cannot be allocated in the function and
+be returned through the arg-list. They must be returned by the return
+(tuple) approach.
+
+Here is an example of how to allocate arrays in the function and then
+send them back to the upper level that called that function:
+
+>>> def aloc_xyz(nx,ny,nz):
+...   xx = np.zeros(nx)
+...   yy = np.zeros(ny)
+...   zz = np.zeros(nz)
+...   return xx, yy, zz
+... 
+>>> xxx,yyy,zzz = aloc_xyz(4,6,8) # Call aloc_xyz, and get the arrays back ...
+>>> xxx
+array([ 0.,  0.,  0.,  0.])
+>>> yyy
+array([ 0.,  0.,  0.,  0.,  0.,  0.])
+>>> zzz
+array([ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.])
+>>> 
+--------------------------------------------------------------------
+
+It appears that variable ispec = 0 for the calculations of interest,
+since ispec = 0 corresponds to HDO.
+
+ispec = 1 seems to correspond to H218O, which is water with two H atoms
+and one heavy oxygen, O-18 rather than O-16, apparently written as 18O
+(that's an upper case o !) leading to water H218O
+
+Note that where an array is involved, use numpy (imported as np) math
+functions like log, exp, etc.
+
+Where it is clearly a scalar argument, it is best to use math.log,
+math.exp, etc, as these are faster and use less overhead.
+
+From the qsat.py (from qsat.pro) def qsat(pressure,temperature) :
+
+### CCD:: Are pressure and temperature both scalar, and not arrays?
+### CCD:: Based on what appears below, I think they are both scalars ...
+### CCD::
+### CCD:: Function qsat(...) is only called from noone_curves.pro or python
+### CCD:: equivalent, and there the two calls are:
+### CCD::
+### CCD::   qs =  1000*qsat(ps, tsrc)/v2m
+### CCD::
+### CCD:: where
+### CCD::   ps = 1000.e2            ; approximate surface pressure
+### CCD::
+### CCD::   qfrz = 1000*qsat(65000., 263.0)/v2m
+### CCD::
+### CCD:: so qsat(...) is only ever called with scalar arguments, as
+### CCD:: far as I can see.
+

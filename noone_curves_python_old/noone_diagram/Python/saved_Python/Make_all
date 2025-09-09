@@ -1,0 +1,5 @@
+# To build all.py, just concatenate the files as given in the cat
+# command below:
+
+cat globals_inits.py alphdo_ice.py alphdo_liq.py qsat.py tsat.py isoeqlsat.py isomixline.py isoraysat.py noone_curves.py  > all.py
+

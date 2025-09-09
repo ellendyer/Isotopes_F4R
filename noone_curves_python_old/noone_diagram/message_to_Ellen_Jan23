@@ -1,0 +1,68 @@
+
+Hi Ellen:
+
+As I am working through this IDL code, I sometimes have trouble
+understanding in detail what IDL will do.
+
+But it suddenly occurred to me that I do have access to a proper IDL
+environment in astro at utoronto. The "central" computer in astro is:
+
+    lepus.astro.utoronto.ca
+
+and I have an account there, which seldom gets used. So this morning I
+logged into that machine, same credentials as I gave you for
+odarragh.astro.utoronto.ca, and just typed "idl".
+
+I was in an interactive IDL session, and thus was able to try some of
+the IDL for which I needed clarification of details.
+
+I have attached a little file "IDL_examples" of some simple playing with
+IDL commands to test things out. In particular I wanted to ensure that I
+understood what findgen and fltarr do, and use them to generate some
+arrays similar to the IDL code in the noone_curves .pro files.
+
+I have attached that little file "IDL_examples", although it is probably
+not of a lot of use for you.
+
+There is one issue that brings up an important difference between IDL
+and Python, and this relates to the issue "call by reference". In IDL,
+you can pass the name of an array to a function or procedure where that
+array has not been allocated in the procedure calling the function, and
+then have the function do the allocation (for example with fltarr which
+simply gives you a chunk of floats). On return from the IDL function,
+that array named in the call to the function will now point at that
+chunk of floats. This is essentially a "call by reference" which you can
+do in IDL, Fortran, C (by using pointers), etc. But that is not normally
+possible in Python.
+
+But there is a good way around it in Python, where a function can return
+not just a single variable, but a whole "tuple" of things.
+
+So in the Python translation of the isoeqlsat, isoraysat, and isomixline
+procedures, each of which allocate some float arrays, I just have to
+remove those array names from the list of arguments to the function, and
+then do
+
+    return (arr1,arr2,..)
+
+where arr1, arr2, ... are the names of the arrays allocated in the
+function.
+
+Back in the calling code, one just uses that return to get the arrays as
+in:
+    (arr1,arr2,...) = isoraysat(... normal args, without the array names)
+
+Then the arrays allocated in the function are now available to the upper
+function calling isoraysat(...).
+
+While this is possibly a bit more messy, it is also much clearer in that
+one knows what is an input to the function (say isoraysat) and what is
+being returned. This is not always so clear in IDL!
+
+- selkcuhc
+
+-- 
+Professor Charles C. Dyer
+Department of Astronomy and Astrophysics
+and Department of Physics
+University of Toronto

@@ -1,0 +1,73 @@
+
+Playing with  things: We might have to implement the IDL where function
+in python
+
+# The "where" function in IDL is a bit odd, as it works on arrays and
+# scalars as well. In the uses in the IDL here, it is always called on a
+# scalar.
+IDL> x = 90
+IDL> print,x
+      90
+IDL> print, where(x le 0) 
+          -1
+IDL> print, where(x gt 100)
+          -1
+IDL> print, where(x gt 10) 
+           0
+IDL> print, where(x le 80) 
+          -1
+From qsat.pro, we have the example:
+
+  i = where (tc gt 50. )
+   if (i[0] gt -1) then tc[i] = 50.
+  i = where (tc lt -50. )
+   if (i[0] gt -1) then tc[i] = -50.
+
+and in this case tc is not an array, but just a scalar. But IDL seems
+not to care, and just looks at whatever tc is, and returns the 'index'
+of the first item there that satisfies tc > 50. If there is no such
+element, where() returns -1, otherwise it returns the position of that
+first element > 50, in this case it would return 0. As long as the
+return value is > -1 (as 0 is) this sets tc[0] = 50, but as tc is not an
+array, tc[0] refers to tc itself. Thus these 4 lines of IDL seem to be
+equivalent to the two lines of python:
+
+    if tc > 50. : tc = 50.
+    if tc < -50. : tc = -50.
+
+
+Python also has a "where" function in numpy, but it is a bit different:
+
+import numpy as np 
+
+a = np.array([1,2,3,4,5,6,7,8,9,10])
+
+# np.where(a<4)    gives back the indices in a where a[] < 4
+print(a[np.where(a<4)])
+--> [1 2 3]
+
+b = np.where(a > 4)
+b
+--> (array([4, 5, 6, 7, 8, 9]),)
+np.where(a > 4)[0]
+array([4, 5, 6, 7, 8, 9])
+
+c=a*a
+c
+--> array([  1,   4,   9,  16,  25,  36,  49,  64,  81, 100])
+
+b = np.where(c > 10)
+b
+==> (array([3, 4, 5, 6, 7, 8, 9]),)
+**** So b is the array of indices of elements of c that are > 10
+
+b[0]
+--> array([3, 4, 5, 6, 7, 8, 9])
+>>> b[0][0]
+3
+>>> b[0][5]
+8
+
+**** Now let's extract the array of elements of c that are > 10
+>>> c[b]
+array([ 16,  25,  36,  49,  64,  81, 100])

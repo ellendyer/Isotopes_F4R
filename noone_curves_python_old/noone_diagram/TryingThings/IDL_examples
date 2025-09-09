@@ -1,0 +1,53 @@
+
+# Some checks of IDL things on lepus.astro.utoronto.ca   CCD Jan 23, 2021
+
+[dyer@lepus ~]$ idl
+IDL Version 8.1 (linux x86_64 m64). (c) 2011, ITT Visual Information Solutions
+Installation number: 98148-2.
+Licensed for use by: University of Toronto
+
+IDL> npts = 10
+IDL> x = findgen(npts)/(npts-1)
+IDL> print,x
+      0.00000     0.111111     0.222222     0.333333     0.444444     0.555556
+     0.666667     0.777778     0.888889      1.00000
+IDL> n = findgen(npts)         
+IDL> print,n
+      0.00000      1.00000      2.00000      3.00000      4.00000      5.00000
+      6.00000      7.00000      8.00000      9.00000
+IDL> y = fltarr(npts)
+IDL> print,y
+      0.00000      0.00000      0.00000      0.00000      0.00000      0.00000
+      0.00000      0.00000      0.00000      0.00000
+IDL>
+IDL> y[0]=1.0
+IDL> for i = 1, npts-1 do begin y[i] = y[i] + 2.0
+IDL> print,x
+      0.00000     0.111111     0.222222     0.333333     0.444444     0.555556
+     0.666667     0.777778     0.888889      1.00000
+IDL> print,y
+      1.00000      2.00000      2.00000      2.00000      2.00000      2.00000
+      2.00000      2.00000      2.00000      2.00000
+IDL> z=x/y
+IDL> print,z
+      0.00000    0.0555556     0.111111     0.166667     0.222222     0.277778
+     0.333333     0.388889     0.444444     0.500000
+IDL> 
+IDL> for i = 0, npts - 1 do y[i] = (1.0+i)^2
+IDL> print,y
+      1.00000      4.00000      9.00000      16.0000      25.0000      36.0000
+      49.0000      64.0000      81.0000      100.000
+IDL> z=x/y
+IDL> print,z
+      0.00000    0.0277778    0.0246914    0.0208333    0.0177778    0.0154321
+    0.0136054    0.0121528    0.0109739    0.0100000
+IDL> lz=alog(x/y)
+% Program caused arithmetic error: Floating divide by 0
+IDL> print,lz
+         -Inf     -3.58352     -3.70130     -3.87120     -4.02981     -4.17131
+     -4.29729     -4.41020     -4.51223     -4.60517
+IDL> lz=alog((x+1)/y)
+IDL> print,lz
+      0.00000     -1.28093     -1.99655     -2.48491     -2.85115     -3.14169
+     -3.38099     -3.58352     -3.75846     -3.91202
+IDL> 

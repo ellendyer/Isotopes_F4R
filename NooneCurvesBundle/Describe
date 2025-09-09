@@ -1,0 +1,37 @@
+
+Descriptions of some of the files
+=================================
+
+
+NooneCurves.py
+
+    The main Noone curves calculation in Python
+
+NooneCurves_Ends.py
+
+    The main Noone curves calculation in Python, with the addition of
+    dumping the delta versus q plot start and end points.
+
+Plot_noone_curves_delp_0.0.pdf
+
+    An example plot with delp set to 0
+
+Plot_noone_curves_delp_-10.0.pdf
+
+    An example plot with delp set to -10
+
+Plot_noone_curves_delp_-30.0.pdf
+
+    An example plot with delp set to -30
+
+set_parms
+
+    An example of setting parameters in a file to over ride the values
+    set in the main NooneCurves.py file
+
+Run_example
+
+    An example of running NooneCurves.py with new values for parameters
+    on the command line (with = signs) as well as a parameter setting
+    file written as standard Python assignments
+

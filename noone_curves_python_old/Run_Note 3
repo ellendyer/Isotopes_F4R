@@ -1,0 +1,18 @@
+
+The wee script "Make_all" will concatenate all the Python code into one
+file called "all.py"
+
+It can be run as:
+
+    python < all.py
+
+or
+
+    python all.py
+
+or by starting python and then "from all import *"
+
+By default it creates a PDF file called "NooneCurves_python.pdf"
+
+but this plotting is all pretty slopy. It needs a more skilled person.
+

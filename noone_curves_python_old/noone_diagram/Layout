@@ -1,0 +1,58 @@
+
+***********  Simple description of Layout of files, etc. ************
+
+IDL_orig:
+
+  The original IDL code from the noone_diagram.zip archive that you sent.
+
+TryingThings:
+
+  Just some files of things I tried and notes all related to how to get
+  things going in Python to match what IDL doe.
+
+
+
+EarlyStageTranslation:
+
+  Some of the earlier parts of the translation, so some IDL and some
+  Python intermingled. This was when I was still working on to translate
+  code involving IDL findgen and fltarr, etc.
+
+
+
+Python:
+
+  The location with the translated code and some other information. The
+  files "Notes" has some random notes on some of the issues encountered.
+
+  The subdirectory "Information" has some scaled up versions of Fig 2
+  with some notes added, such as which of isoeqlsat, isomixline, or
+  isoraysat was used to produce which curve in Fig 2. File "plot_info"
+  tries to look at the colour and line style information and relating it
+  to the top-level routine "noone_curves". Fig_2_descriptions pulls
+  apart the caption for Fig_2 into the pieces for each of the plotted
+  curves. Fig_2_big.pdf is Fig_2 much enlarged, and annotated with which
+  of the iso... routines was used. Since I do not have a colour printer,
+  the colour of each curve is indicated by O, C, or M in a square box.
+
+  The directory with the "final" Python code is "saved_Python", and this
+  directory is also tar archived in the file "saved_Python.tgz".
+
+  All the .py files are concatenated into "all.py" for loading in one
+  go, and the "cat" command is in the bash script Make_all.
+
+  The top-level Python file that calls all the various iso... routines
+  is in "noone_curves.py" but this does not execute completely, because
+  the variables "i80" and "ifrz" are not defined at least that I can
+  find. We should talk about that.
+
+  The SimplePlots subdirectory is really preliminary testing, where I
+  just ran the first two isomixline calls from noone_curves.py, just
+  using "script.py" and cut-past commands to python. I then just
+  cut-pasted the data from the arrays (I had set "nn" down to 20 to make
+  things smaller) and then just used vi to create data files that I
+  could plot with gnuplot using the little file First_go.plt. The result
+  was the basic plot in the qh2odeldmix_evap.ps or the PDF version
+  qh2odeldmix_evap.pdf.
+
+

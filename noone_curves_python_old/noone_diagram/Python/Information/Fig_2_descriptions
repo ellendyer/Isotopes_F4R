@@ -1,0 +1,58 @@
+******************************* CYAN *************************
+
+A Rayleigh curve represents a pseudoadiabatic process and is shown as
+the solid cyan curve assuming an original air mass that has 80% relative
+humidity relative to equilibrium with an ocean source marked at
+point q_s , delta_s with an assumed temperature of 300 K.
+
+Solid Cyan:
+===========
+>>>> isoraysat,q1/1000.,del1,q0/1000.,nn,pcld,qh2oray,deldray,qh2ocld,deldcld
+
+===========================================================================
+
+The case of a reversible moist adiabatic process is shown as the dashed
+cyan curve assuming the same origin, with a transition to a Rayleigh
+process (... short-dashed cyan ...) below 263 K when condensation is
+to ice and irreversible.
+
+Long Dashed Cyan:
+=================
+>>>> isoeqlsat,q1/1000.,del1,q1/1000.,nn,pcld,qh2oeql,deldeql
+
+Dashed Cyan:
+============
+>>>> isoraysat,qh2oeql[ifrz]/1000.,deldeql[ifrz],q1/1000.,nn,pcld, $
+>>>>              qh2oice,deldice,qh2osno,deldsno
+
+************************* PURPLE - MAGENTA *******************
+
+The case of remoistening associated with isotopic exchange as
+raindrops evaporate into a subsaturated layer is shown in purple.
+
+Solid Purple (Magenta):
+=======================
+>>>> eff = -1.0         ; processed twice (reevaporation)
+>>>> isoraysat,q1/1000.,del1,qmin/1000,nn,pcld, $
+>>>>               qh2orev,deldrev,qh2ocld2,deldcld2,eff=eff
+
+**************************** ORANGE **************************
+
+The solid orange curve shows evaporation as mixing with vapor in
+equilibrium with the ocean surface, with an assumed dry end
+member at q_0 , delta_0 .
+
+Solid Orange:
+=============
+>>>> isomixline,q0,del0,qs,dels,nn,eta,qh2oevap,deldevap
+                           ^^^^
+===========================================================================
+ 
+The dashed orange curve shows the evolution associated with a more
+enriched source, such as terrestrial transpiration, and represents an
+upper bound.
+
+Dashed Orange:
+==============
+>>>> isomixline,q0,del0,qs,delp,nn,eta,qh2omix,deldmix
+                           ^^^^
