@@ -10,17 +10,21 @@
 **Northern Band**
 - onset = 125, cessation = 297
 - onset = start-May, cessation = end-October
+- season length 172
 
 **Equatorial Band**
 - onset = 62, cessation = 142
 - onset = start-March, cessation = end-May
+- season length 80
 
 - onset = 247, cessation = 341
 - onset = start-September, cessation = mid-December
+- 94
 
 **Southern Band**
 - onset = 290, cessation = 111
 - onset = Mid-October, cessation = near-end April
+- season length 186
 
 ## 23rd March 2026
 
