@@ -308,7 +308,7 @@ def onset_cess_base(tseries,extra_season,rolldays=None):
          plt.xlabel('day of year')
          plt.ylabel('Cummulative daily anomaly (mm)')
          #plt.savefig('plots/base_water_year.png',bbox_inches='tight',dpi=200)
-         #plt.show()
+         plt.show()
          plt.clf()
 
        return ON1,OFF1,ON2,OFF2,ON3,OFF3
@@ -326,7 +326,7 @@ def onset_cess_base(tseries,extra_season,rolldays=None):
          plt.xlabel('day of year')
          plt.ylabel('Cummulative daily anomaly (mm)')
          #plt.savefig('plots/base_water_year.png',bbox_inches='tight',dpi=200)
-         #plt.show()
+         plt.show()
          plt.clf()
 
        return ON1,OFF1

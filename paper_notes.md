@@ -61,3 +61,15 @@ done
 
 - deltas between values 
 
+## 30th July 2026
+
+- Run through the full HDO processing routine (done for TROPOMI)
+- Try to set up a skeleton of composite process (1st August)
+- Repeat plot from two TROPOMI papers with my data (didn't have right region but similar enough range for Amazon plot)
+
+## 1st August 2026
+
+- Try to set up a skeleton of composite process 
+- Replace all the map figures in paper with updated versions
+- Will have to run through all the processing to make sure everything is on the same 0.25 grid rather than on 0.25 grids with slightly different bounnds
+- Keep editing map_cess dates in dictionary
