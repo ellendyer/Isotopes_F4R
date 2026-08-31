@@ -63,13 +63,29 @@ done
 
 ## 30th July 2026
 
-- Run through the full HDO processing routine (done for TROPOMI)
+- Run through the full HDO processing routine (***done for TROPOMI***)
 - Try to set up a skeleton of composite process (1st August)
-- Repeat plot from two TROPOMI papers with my data (didn't have right region but similar enough range for Amazon plot)
+- Repeat plot from two TROPOMI papers with my data (*didn't have right region but similar enough range for Amazon plot*)
 
 ## 1st August 2026
 
 - Try to set up a skeleton of composite process 
-- Replace all the map figures in paper with updated versions
+- Replace all the map figures in paper with updated versions (***run, just need to edit doc***)
 - Will have to run through all the processing to make sure everything is on the same 0.25 grid rather than on 0.25 grids with slightly different bounnds
-- Keep editing map_cess dates in dictionary
+- Keep editing map_cess dates in dictionary (**done**)
+
+## 24th Agust
+GNIP for curves plot:
+
+Equatorial Band
+Mean:  -4.319863515801338
+Max:  45.7
+Std-dev:  19.271663220137533
+
+Range : -25 > 15
+
+# Paper to dos:
+- climatology with rho - add months to x axis
+
+- Questions for Josie:
+    - Any documentation on the GNIP choices? I can't download a new file that doesn't have massively positive samples...

@@ -549,17 +549,17 @@ def noone_curves(tsrc,q0,del0):
   # Noone paper colour: Orange Dashed
   plt.plot(qh2omix,deldmix,color='teal',linestyle='dashed',label='Mixing - Transpiration Source')
 
-  # Noone paper colour: Cyan Long-dashed
-  plt.plot(qh2oeql,deldeql,color='black',linestyle='dashdot',label='Reversible moist adiabatic')
+  ## Noone paper colour: Cyan Long-dashed
+  #plt.plot(qh2oeql,deldeql,color='black',linestyle='dashdot',label='Reversible moist adiabatic')
 
   # Noone paper colour: Cyan Solid
   plt.plot(qh2oray,deldray,color='black',linestyle='solid',label='Removal of water (Rayleigh)')
 
-  # Noone paper colour: Cyan Dashed
-  plt.plot(qh2oice,deldice,color='black',linestyle='dashed')
+  ## Noone paper colour: Cyan Dashed
+  #plt.plot(qh2oice,deldice,color='black',linestyle='dashed')
 
-  # Noone paper colour: Magenta Solid
-  plt.plot(qh2orev,deldrev,color='orange',linestyle='solid',label='Re-evaporation')
+  ## Noone paper colour: Magenta Solid
+  #plt.plot(qh2orev,deldrev,color='orange',linestyle='solid',label='Re-evaporation')
   
 
 

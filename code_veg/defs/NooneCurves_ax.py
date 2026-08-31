@@ -472,14 +472,26 @@ def noone_curves(tsrc,q0,del0,ax):
 #
 # Make a curve for evaporation
 #
-  dels = (1./alphdo_liq(tsrc) - 1)*1000.
-  qs =  1000*qsat(ps, tsrc)/v2m # source value (saturation specific humidity?)
+  for i,tsrc in enumerate(np.arange(295,305)):
+    dels = (1./alphdo_liq(tsrc) - 1)*1000.
+    qs =  1000*qsat(ps, tsrc)/v2m # source value (saturation specific humidity?)
 
-  (qh2oevap,deldevap) = isomixline(q0,del0,qs,dels,nn,eta)
+    (qh2oevap,deldevap) = isomixline(q0,del0,qs,dels,nn,eta)
+    # Noone paper colour: Orange Solid
+    if i==0:
+      ax.plot(qh2oevap,deldevap,color='orange',linestyle='solid',label='Mixing - Ocean Source',zorder=0)
+    else:
+      ax.plot(qh2oevap,deldevap,color='orange',linestyle='solid',zorder=0)
 #
 # Mix between high latitude and tropical super-depleted points
 # 
-  (qh2omix,deldmix) = isomixline(q0,del0,qs,delp,nn,eta)
+  for i,delp in enumerate(np.arange(-25,20,5)):
+    (qh2omix,deldmix) = isomixline(q0,del0,qs,delp,nn,eta)
+    # Noone paper colour: Orange Dashed
+    if i==0:
+      ax.plot(qh2omix,deldmix,color='teal',linestyle='dashed',label='Mixing - Transpiration Source',zorder=0)
+    else:
+      ax.plot(qh2omix,deldmix,color='teal',linestyle='dashed',zorder=0)
 #
 # Find the location of the minimum element in the vector qh2oevap/qs - hsrc
 # which gives the location in the vector qh2oevap/qs that is closest to
@@ -542,24 +554,19 @@ def noone_curves(tsrc,q0,del0,ax):
 #  # Plot vertical line where q --> q at 80% RH
 #  plt.plot([q1,q1],[-400.0,0.0],color='black',linestyle='dashed')
 
-  # Noone paper colour: Orange Solid
-  # plt.plot(qh2oevap,deldevap,'-.y')
-  ax.plot(qh2oevap,deldevap,color='teal',linestyle='solid',label='Mixing - Ocean Source')
 
-  # Noone paper colour: Orange Dashed
-  ax.plot(qh2omix,deldmix,color='teal',linestyle='dashed',label='Mixing - Transpiration Source')
 
-  # Noone paper colour: Cyan Long-dashed
-  ax.plot(qh2oeql,deldeql,color='black',linestyle='dashdot',label='Reversible moist adiabatic')
+  ## Noone paper colour: Cyan Long-dashed
+  #ax.plot(qh2oeql,deldeql,color='black',linestyle='dashdot',label='Reversible moist adiabatic')
 
   # Noone paper colour: Cyan Solid
-  ax.plot(qh2oray,deldray,color='black',linestyle='solid',label='Removal of water (Rayleigh)')
+  ax.plot(qh2oray,deldray,color='black',linestyle='solid',label='Removal of water (Rayleigh)',zorder=0)
 
-  # Noone paper colour: Cyan Dashed
-  ax.plot(qh2oice,deldice,color='black',linestyle='dashed')
+  ## Noone paper colour: Cyan Dashed
+  #ax.plot(qh2oice,deldice,color='black',linestyle='dashed')
 
-  # Noone paper colour: Magenta Solid
-  ax.plot(qh2orev,deldrev,color='orange',linestyle='solid',label='Re-evaporation')
+  ## Noone paper colour: Magenta Solid
+  #ax.plot(qh2orev,deldrev,color='orange',linestyle='solid',label='Re-evaporation')
   
 
 
